@@ -15,14 +15,13 @@ export default class Cart {
     }
 
     getPrice(): number {
-        let sum = 0;
-        for(let item of this._items){
+        let result = this._items.reduce((sum, item) => {
             if(item.price === undefined){
-                continue;
+               return sum + 0;
             }
-            sum += item.price;
-        }
-        return sum;
+            return sum + item.price;
+        }, 0);
+        return result;
     }
 
     getDiscountPrice (discount: number): number {
